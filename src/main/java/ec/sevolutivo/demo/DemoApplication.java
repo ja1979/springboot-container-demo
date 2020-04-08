@@ -22,9 +22,9 @@ public class DemoApplication {
     }
 
 
-    @RequestMapping("/")
+    @RequestMapping("/api")
     public String home() {
-        return "Hello using " + prop.getUrl();
+        return "Hello: " + prop.getUrl();
     }
 
 }
