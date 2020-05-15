@@ -24,7 +24,7 @@ public class DemoApplication {
 
     @RequestMapping("/api")
     public String home() {
-        return "Hello: " + prop.getUrl();
+        return "Calling service: " + prop.getServiceUrl();
     }
 
 }

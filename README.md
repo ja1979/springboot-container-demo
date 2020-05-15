@@ -1,18 +1,42 @@
+# Spring Boot Demo
 
+## Run it locally 
+```
 ./mvnw spring-boot:run
+```
 
-curl localhost:8080/api
+```
+curl -w "\n" localhost:8080/api
+```
 
+## Package it in an image container
+```
 ./mvnw clean package
 
-docker build -t demo:0.0.1-SNAPSHOT .
+podman build -t demo .
 
-docker run --name demo -p 38080:8080 demo:0.0.1-SNAPSHOT
+podman images | grep demo
+```
 
-curl localhost:8080/api
+## Run it locally inside a container
 
-docker rm demo
+```
+podman run --name demo -p 30080:8080 demo
+```
 
-docker run --name demo -p 38080:8080 -e APPLICATION_URL=hhtp://dummy.com demo:0.0.1-SNAPSHOT
+```
+curl -w "\n" localhost:30080/api
 
-curl localhost:8080/api
+podman rm demo
+```
+
+## Run it locally inside a container using environment variables
+```
+podman run --name demo -p 30080:8080 -e APPLICATION_SERVICEURL=http://external.acme.com/ws/customer demo
+```
+
+```
+curl -w "\n" localhost:30080/api
+
+podman rm demo
+```

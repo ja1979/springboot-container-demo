@@ -6,13 +6,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class ApplicationProperties {
 
-    private String url;
+    private String serviceUrl;
 
-    public String getUrl() {
-        return url;
+    public String getServiceUrl() {
+        return serviceUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
     }
 }
