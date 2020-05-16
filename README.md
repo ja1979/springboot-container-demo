@@ -1,4 +1,4 @@
-# Spring Boot Demo
+# Spring Boot Container Demo
 
 ## Run it locally 
 ```
