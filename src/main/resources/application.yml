@@ -1,0 +1,2 @@
+application:
+  serviceUrl: http://internal.localhost/ws/customer

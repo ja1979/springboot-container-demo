@@ -32,7 +32,7 @@ podman rm demo
 
 ## Run it locally inside a container using environment variables
 ```
-podman run --name demo -p 30080:8080 -e APPLICATION_SERVICEURL=http://external.acme.com/ws/customer demo
+podman run --name demo -p 30080:8080 -e APPLICATION_SERVICEURL=http://external.localhost/ws/customer demo
 ```
 
 ```
