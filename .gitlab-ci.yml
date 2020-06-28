@@ -1,0 +1,42 @@
+image: openjdk:11
+
+cache:
+  key: "$CI_COMMIT_REF_NAME"
+  paths:
+    - .maven/
+stages:
+  - check
+  - build
+  - test
+
+before_script:
+  - export MAVEN_USER_HOME=`pwd`/.maven
+
+nohttp:
+  stage: check
+  script:
+    - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
+
+maven-compile:
+  stage: build
+  script:
+    - ./mvnw -ntp compile -Dmaven.repo.local=$MAVEN_USER_HOME
+  artifacts:
+    paths:
+      - target/classes/
+      - target/generated-sources/
+    expire_in: 1 day
+
+maven-test:
+  stage: test
+  only:
+    - dev
+  script:
+    - ./mvnw -ntp verify -Dmaven.repo.local=$MAVEN_USER_HOME
+  artifacts:
+    reports:
+      junit: target/test-results/**/TEST-*.xml
+    paths:
+      - target/test-results
+      - target/jacoco
+    expire_in: 1 day
