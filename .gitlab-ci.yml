@@ -17,8 +17,8 @@ nohttp:
   script:
     - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
-    reports:
-      codequality: target/target/checkstyle-*.xml
+    paths:
+      - target/checkstyle-*.xml
 
 maven-compile:
   stage: build
@@ -38,6 +38,5 @@ maven-test:
     reports:
       junit: target/surefire-reports/**/TEST-*.xml
     paths:
-      - target/test-results
-      - target/jacoco
+      - target/surefire-reports
     expire_in: 1 day
