@@ -18,7 +18,7 @@ nohttp:
     - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
     reports:
-      checkstyle: target/target/checkstyle-*.xml
+      codequality: target/target/checkstyle-*.xml
 
 maven-compile:
   stage: build
