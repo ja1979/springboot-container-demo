@@ -8,12 +8,11 @@ stages:
   - check
   - build
   - test
-  - package
 
 before_script:
   - export MAVEN_USER_HOME=`pwd`/.maven
 
-nohttp:
+checkstyle:
   stage: check
   script:
     - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
@@ -40,14 +39,4 @@ maven-test:
       junit: target/surefire-reports/**/TEST-*.xml
     paths:
       - target/surefire-reports
-    expire_in: 1 day
-
-maven-package:
-  stage: package
-  script:
-    - ./mvnw -ntp verify -DskipTests -Dmaven.repo.local=$MAVEN_USER_HOME
-  artifacts:
-    paths:
-      - target/*.jar
-      - target/classes
     expire_in: 1 day
