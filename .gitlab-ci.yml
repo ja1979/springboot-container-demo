@@ -8,6 +8,7 @@ stages:
   - check
   - build
   - test
+  - package
 
 before_script:
   - export MAVEN_USER_HOME=`pwd`/.maven
