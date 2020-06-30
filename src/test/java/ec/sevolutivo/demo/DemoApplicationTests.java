@@ -8,7 +8,7 @@ class DemoApplicationTests {
 
     @Test
     void dummyTest() {
-        assertThat(true).isTrue();
+        assertThat(false).isTrue();
     }
 
 }
