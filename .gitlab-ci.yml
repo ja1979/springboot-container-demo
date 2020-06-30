@@ -15,6 +15,8 @@ before_script:
 
 checkstyle:
   stage: check
+  except:
+    - qa
   script:
     - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
@@ -23,6 +25,8 @@ checkstyle:
 
 maven-compile:
   stage: build
+  except:
+    - qa
   script:
     - ./mvnw -ntp compile -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
@@ -33,6 +37,8 @@ maven-compile:
 
 maven-test:
   stage: test
+  except:
+    - qa
   script:
     - ./mvnw -ntp verify -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
