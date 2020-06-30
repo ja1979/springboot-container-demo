@@ -40,3 +40,15 @@ maven-test:
     paths:
       - target/surefire-reports
     expire_in: 1 day
+
+maven-package:
+  stage: package
+  only:
+    - qa
+  script:
+    - ./mvnw -ntp verify -DskipTests -Dmaven.repo.local=$MAVEN_USER_HOME
+  artifacts:
+    paths:
+      - target/*.jar
+      - target/classes
+    expire_in: 1 day
