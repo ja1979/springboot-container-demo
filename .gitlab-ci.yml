@@ -71,4 +71,4 @@ docker-push:
   dependencies:
       - maven-package
   script:
-      - ./mvnw jib:build -Dimage=$IMAGE_TAG -Djib.to.auth.username=gitlab-ci-token -Djib.to.auth.password=$CI_BUILD_TOKEN
+      - ./mvnw -ntp jib:build -Dimage=$IMAGE_TAG -Djib.to.auth.username=gitlab-ci-token -Djib.to.auth.password=$CI_BUILD_TOKEN
