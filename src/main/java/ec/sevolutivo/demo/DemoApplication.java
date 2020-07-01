@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @SpringBootApplication
 @RestController
@@ -23,6 +25,11 @@ public class DemoApplication {
     @RequestMapping("/api")
     public String home() {
         return "Calling service: " + this.serviceUrl;
+    }
+
+    @RequestMapping("/hello/{name}")
+    public String hello(@PathVariable String name) {
+        return "Hello " + name;
     }
 
 }
