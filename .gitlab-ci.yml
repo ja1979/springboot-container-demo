@@ -8,16 +8,12 @@ stages:
   - check
   - build
   - test
-  - package
-  - release
 
 before_script:
   - export MAVEN_USER_HOME=`pwd`/.maven
 
 checkstyle:
   stage: check
-  except:
-    - qa
   script:
     - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
@@ -26,8 +22,6 @@ checkstyle:
 
 maven-compile:
   stage: build
-  except:
-    - qa
   script:
     - ./mvnw -ntp compile -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
@@ -38,8 +32,6 @@ maven-compile:
 
 maven-test:
   stage: test
-  except:
-    - qa
   script:
     - ./mvnw -ntp verify -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
@@ -48,27 +40,3 @@ maven-test:
     paths:
       - target/surefire-reports
     expire_in: 1 day
-
-maven-package:
-  stage: package
-  only:
-    - qa
-  script:
-    - ./mvnw -ntp verify -DskipTests -Dmaven.repo.local=$MAVEN_USER_HOME
-  artifacts:
-    paths:
-      - target/*.jar
-      - target/classes
-    expire_in: 1 day
-
-docker-push:
-  stage: release
-  only:
-    - qa
-  variables:
-      REGISTRY_URL: gitlab.192.168.122.128.nip.io:4567
-      IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  dependencies:
-      - maven-package
-  script:
-      - ./mvnw -ntp jib:build -Dimage=$IMAGE_TAG -Djib.to.auth.username=gitlab-ci-token -Djib.to.auth.password=$CI_BUILD_TOKEN

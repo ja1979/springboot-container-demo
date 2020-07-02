@@ -7,8 +7,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class DemoApplicationTests {
 
     @Test
-    void dummyTest() {
+    void testTRue() {
         assertThat(true).isTrue();
+    }
+
+    @Test
+    void testCompare() {
+        assertThat(1+1).isEqualTo(3);
     }
 
 }
