@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class DemoApplicationTests {
 
     @Test
-    void testTRue() {
+    void testTrue() {
         assertThat(false).isTrue();
     }
   

@@ -28,9 +28,5 @@ public class DemoApplication {
         return "Calling service: " + this.serviceUrl;
     }
 
-    @RequestMapping("/hello/{name}")
-    public String hello(@PathVariable String name) {
-        return "Hello " + name;
-    }
 
 }
