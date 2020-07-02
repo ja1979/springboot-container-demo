@@ -1,5 +1,7 @@
 package ec.sevolutivo.demo;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,5 +30,9 @@ public class DemoApplication {
         return "Calling service: " + this.serviceUrl;
     }
 
+    @RequestMapping("/hello/{name}")
+    public String hello(@PathVariable String name) {
+        return "Hello " + name;
+    }
 
 }
