@@ -8,12 +8,7 @@ class DemoApplicationTests {
 
     @Test
     void testTRue() {
-        assertThat(true).isTrue();
+        assertThat(false).isTrue();
     }
-
-    @Test
-    void testCompare() {
-        assertThat(1+1).isEqualTo(3);
-    }
-
+  
 }

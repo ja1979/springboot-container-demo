@@ -33,7 +33,7 @@ maven-compile:
 maven-test:
   stage: test
   script:
-    - ./mvnw -ntp verify -Dmaven.repo.local=$MAVEN_USER_HOME
+    - ./mvnw -ntp test -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
     reports:
       junit: target/surefire-reports/**/TEST-*.xml
