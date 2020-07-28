@@ -9,6 +9,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static net.logstash.logback.argument.StructuredArguments.kv;
+
 @SpringBootApplication
 @RestController
 public class DemoApplication {
@@ -31,8 +33,8 @@ public class DemoApplication {
         logger.trace("A TRACE Message");
         logger.debug("A DEBUG Message");
         logger.info("An INFO Message");
-        logger.warn("A WARN Message");
-        logger.error("An ERROR Message");
+        logger.warn("A WARN Message {} {}", kv("canal","uno"), kv("severity","urg"));
+        logger.error("An ERROR Message {}", kv("canal","uno"));
 
         return "Calling service: " + this.serviceUrl;
     }
